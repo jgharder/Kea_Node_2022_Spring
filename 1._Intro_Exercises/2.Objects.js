@@ -9,19 +9,23 @@ const alienMessage = {
 
 // Log the message 
 
+console.log(alienMessage.message);
 // --------------------------------------
 // Exercise 2 - Defining an object. 
 
 // Create an object that has your name and age. 
 
-
+const Jacob = {
+	name: "Jacob Gade Harder",
+	age: 27
+}
 // --------------------------------------
 // Exercise 3 - Add a property 
 
 const stackOverflow = {};
 
 // make a rule called isAllowed and let the value be true
-
+stackOverflow.isAllowed=true;
 // --------------------------------------
 // Exercise 4 - Remove a property 
 
@@ -31,7 +35,7 @@ const thisSong = {
 
 // remove the property "description" and add a property called "about" that should say "Just a tribute." 
 
-
+delete thisSong.description;
 // --------------------------------------
 
 
