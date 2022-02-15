@@ -36,4 +36,6 @@ app.delete("/movie/:id", (req, res) => {
   movies.splice(req.params.id - 1, 1);
 });
 
-app.listen(port);
+app.listen(port, (error)=>{
+  console.log("Server is running on port:", port)
+});
