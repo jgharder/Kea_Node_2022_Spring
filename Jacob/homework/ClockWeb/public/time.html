@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>What day is it</h1>
+    <div id="time"></div>
+
+   
+    <br>
+    <button id="tomorrow-btn">What day is it tomorrow?</button>
+    <br> <br>
+    <div id="tomorrow"></div>
+    
+
+
+    <script>
+      const divtag = document.getElementById("time");
+      const today = new Date();
+      const button = document.getElementById("tomorrow-btn");
+
+      divtag.innerText = dayOfWeekAsString(today.getDay());
+
+      function dayOfWeekAsString(dayIndex) {
+        return (
+          [
+            "Sunday",
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ][dayIndex] || ""
+        );
+      }
+
+      function divtagfunc() {
+        divtag2 = document.getElementById("tomorrow").innerText =
+          dayOfWeekAsString(today.getDay() + 1);
+      }
+
+      button.addEventListener("click", divtagfunc);
+    </script>
+  </body>
+</html>
