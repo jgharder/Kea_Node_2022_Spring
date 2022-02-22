@@ -2,12 +2,14 @@ const express = require("express");
 const app = express();
 const port = 8080;
 
+app.use(express.static("public"));
+
 app.get("/", (req, res) => {
-    res.send("<h1> Welcome to World Wide Weather</>");
+  res.sendFile(__dirname + "/public/frontpage/index.html");
 });
 
 app.get("/weather", (req, res) => {
-    res.sendFile(__dirname + "/public/weather.html");
+  res.sendFile(__dirname + "/public/weather.html");
 });
 
 app.listen(port, () => {

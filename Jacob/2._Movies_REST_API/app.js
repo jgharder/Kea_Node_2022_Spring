@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const port = 8080;
+app.use(express.json());
 
 const movies = [
   {
@@ -17,6 +18,8 @@ const movies = [
   },
 ];
 
+let CURRENT_ID = 3;
+
 app.get("/movies", (req, res) => {
   res.send({ data: movies });
 });
@@ -26,16 +29,30 @@ app.get("/movies/:id", (req, res) => {
   foundMovie ? res.send({ movie: foundMovie }) : res.sendStatus(404);
 });
 
+app.post("/movies", (req, res) => {
+  const movieToBe = req.body;
+  movies.push(movieToBe);
+  movieToBe.id = ++CURRENT_ID;
+  res.send({ data: movieToBe });
+});
+
+app.patch("/movies/:id", (req, res) => {
+  const foundMovie = movies.find(movie => movie.id === Number(req.params.id));
+  const movieToUpdateWith = {...foundMovie, ...req.body, id: foundMovie.id};
+  movies.foundMovie = movieToUpdateWith;
+  res.send({data: movieToUpdateWith});
+});
+
 app.delete("/movies/:id", (req, res) => {
   const foundMovieIndex = movies.findIndex(
     (movie) => movie.id === Number(req.params.id)
   );
   if (foundMovieIndex !== -1) {
     movies.splice(foundMovieIndex, 1);
-    res.send({})
+    res.send({});
   } else {
-      res.status(404).send({})
-  };
+    res.status(404).send({});
+  }
 });
 
 app.listen(port, () => {
