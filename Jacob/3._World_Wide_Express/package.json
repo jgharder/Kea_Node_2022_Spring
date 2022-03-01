@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start-dev": "nodemon app.js",
+    "start-dev": "cross-env PORT=3000 nodemon app.js",
     "start": "node app.js"
   },
   "dependencies": {
