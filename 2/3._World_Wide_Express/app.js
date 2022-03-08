@@ -1,7 +1,13 @@
 const express = require("express");
 const app = express();
 
-app.use(express.static("public"));   
+app.use(express.static("public"));
+
+// const { calculateAmountOfCoolDinosaurs } = require("./dinosaurs/dinosaurs.js");
+// console.log(calculateAmountOfCoolDinosaurs());
+
+const dinosaurrouter = require("./routers/dinosaurrouter.js");
+app.use(dinosaurrouter.router);
 
 
 app.get("/", (req, res) => {
@@ -20,6 +26,9 @@ app.get("/bored", (req, res) => {
 });
 
 
-app.listen(8080, () => { 
-    console.log("The server is running on port", 8080);
+
+const PORT = process.env.PORT || 9000;
+
+const server = app.listen(PORT, () => {
+    console.log("The server is running on port", server.address().port);
 });
