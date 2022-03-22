@@ -1,1 +1,5 @@
-<h1>Apples</h1>
+<script>
+    export let apple;
+</script>
+
+<h1>{apple}</h1>
