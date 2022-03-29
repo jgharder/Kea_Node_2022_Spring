@@ -1,6 +1,9 @@
 import express from "express";
 import rateLimit from "express-rate-limit";
 import helmet from "helmet";
+import session from "express-session";
+import coffeeRouter from "./routers/coffee.js"
+
 
 const app = express();
 const PORT = process.env.PORT || 8080;
@@ -8,6 +11,16 @@ const PORT = process.env.PORT || 8080;
 app.use(express.static("public"));
 app.use(helmet());
 app.use("/frontdoor", ipLogger);
+
+app.use(session({
+  secret: 'keyboard cat',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
+
+
+app.use(coffeeRouter)
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 100,
